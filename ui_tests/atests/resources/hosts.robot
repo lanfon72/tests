@@ -7,7 +7,7 @@ Library             edit_yaml.py
 Click Hosts Option By Row
     [arguments]     ${option}   ${row_id}   ${timeout}=${BROWSER_WAIT_TIMEOUT}
     Navigate To Option      Hosts
-    Click Button    xpath://main//tr[@data-node-id="${row_id}"]/td/button
+    Click Button    xpath://main//tr[@data-node-id="${row_id}"]/td/button[contains(@class, "actions")]
     ${_opt} =   Convert To Title Case   ${option}
     ${_opt} =   Replace String      ${_opt}     Yaml    YAML
     Click Element   xpath://main//li[./span[text()="${_opt}"]]
@@ -27,5 +27,5 @@ Click Option ${option} On Node details
 
 Click Host Details By Name
     [arguments]     ${name}     ${timeout}=${BROWSER_WAIT_TIMEOUT}
-    Click Link      xpath://main//td[@data-title="Name"]//a[normalize-space(text())="${name}"]
+    Click Link      xpath://main//td[contains(@class, "link-detail")]//a[normalize-space(text())="${name}"]
     Wait Until Element Is Visible   css:main section   timeout=${timeout}

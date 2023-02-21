@@ -31,7 +31,7 @@ List Available Nodes
     @{names} =      Execute Javascript
     ...             return Array.from(
     ...               document.querySelectorAll('main tbody tr')
-    ...             ).map(e => e.getAttribute("data-node-id"))
+    ...             ).map(e => e.getAttribute("data-node-id")).filter(x => !!x)
     Set Test Variable   ${nodes}    ${names}
 
 Verify ${node_row_id} Basic Information
@@ -53,30 +53,30 @@ Verify ${node_row_id} Resources Information
 
 
 State of ${node_row_id} Should Be ${state}
-    Element Text Should Be   xpath://main//tr[@data-node-id="${node_row_id}"]//td[@data-title="State"]//span[contains(@class, "badge-state")]
+    Element Text Should Be   xpath://main//tr[@data-node-id="${node_row_id}"]//td[contains(@class,"badge-state")]//span[contains(@class, "badge-state")]
     ...                      ${state}
 
 Name of ${node_row_id} Should Not Be Empty
-    ${name} =   Get Text    xpath://main//tr[@data-node-id="${node_row_id}"]//td[@data-title="Name"]//a
+    ${name} =   Get Text    xpath://main//tr[@data-node-id="${node_row_id}"]//td[contains(@class, "link-detail")]//a
     Should Not Be Empty     ${name}
 
 Host of ${node_row_id} IP Should Be Valid
-    ${ipaddr} =   Get Text      xpath://main//tr[@data-node-id="${node_row_id}"]//td[@data-title="Host IP"]/div
+    ${ipaddr} =   Get Text      xpath://main//tr[@data-node-id="${node_row_id}"]//td/div[contains(@class, "console")]
     Import Library          ipaddress
     ipaddress.ip_address    ${ipaddr}
 
 Age of ${node_row_id} Should Be Readable
-    ${agetxt} =   Get Text      xpath://main//tr[@data-node-id="${node_row_id}"]//td[@data-title="Age"]/span
+    ${agetxt} =   Get Text      xpath://main//tr[@data-node-id="${node_row_id}"]//td[contains(@class, "live-date")]/span
     Should Match Regexp     ${agetxt}   (\\d+(?:\\.\\d+)?)\\s+(sec|min|hour|day)s?
     Log     ${agetxt}
 
 Disk of ${node_row_id} State Should Be ${state}
-    Element Text Should Be   xpath://main//tr[@data-node-id="${node_row_id}"]//td[@data-title="Disk State"]//span
+    Element Text Should Be   xpath://main//tr[@data-node-id="${node_row_id}"]//td[contains(@class, "disk-state")]//span
     ...                      ${state}
 
 Record CPU Values of
     [arguments]     ${node_id}
-    ${txt} =        Get Text      xpath://main//tr[@data-node-id="${node_id}"]//td[@data-title="CPU"]//span[span]
+    ${txt} =        Get Text      xpath://main//tr[@data-node-id="${node_id}"]//td[contains(@class, "cpuused")]//span[span]
     ${matches} =    Get Regexp Matches
     ...             ${txt}
     ...             (\\d+(?:\\.\\d+)?)\\sof\\s(\\d+)    1   2
@@ -84,7 +84,7 @@ Record CPU Values of
 
 Record Memory Values of
     [arguments]     ${node_id}
-    ${txt} =        Get Text      xpath://main//tr[@data-node-id="${node_id}"]//td[@data-title="MEMORY"]//span[span]
+    ${txt} =        Get Text      xpath://main//tr[@data-node-id="${node_id}"]//td[contains(@class, "memory-used")]//span[span]
     ${matches} =    Get Regexp Matches
     ...             ${txt}
     ...             (\\d+(?:\\.\\d+)?)\\sof\\s(\\d+)    1   2
@@ -92,7 +92,7 @@ Record Memory Values of
 
 Record Storage Values of
     [arguments]     ${node_id}
-    ${txt} =        Get Text      xpath://main//tr[@data-node-id="${node_id}"]//td[@data-title="Storage Size"]//span[span]
+    ${txt} =        Get Text      xpath://main//tr[@data-node-id="${node_id}"]//td[contains(@class, "storage-used")]//span[span]
     ${matches} =    Get Regexp Matches
     ...             ${txt}
     ...             (\\d+(?:\\.\\d+)?)\\sof\\s(\\d+)    1   2
@@ -100,7 +100,7 @@ Record Storage Values of
 
 Navigate To Node
     [arguments]     ${node_id}      ${timeout}=${BROWSER_WAIT_TIMEOUT}
-    Click Link      xpath://main//tr[@data-node-id="${node_id}"]//td[@data-title="Name"]//a
+    Click Link      xpath://main//tr[@data-node-id="${node_id}"]//td[contains(@class, "link-detail")]//a
     Wait Until Element Is Visible   xpath://main//section     timeout=${timeout}
     sleep   0.5s
 

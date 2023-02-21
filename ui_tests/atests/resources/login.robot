@@ -10,7 +10,7 @@ Open Browser To Login Page
 
     Set Default Browser Download Path   ${BROWSER_DOWNLOAD_PATH}
     Open Browser    ${LOGIN URL}/${endpoint}    ${BROWSER}
-    ...             options=add_argument("--ignore-certificate-errors"); add_experimental_option("prefs", {"download.default_directory": "${BROWSER_DOWNLOAD_PATH}"})
+    ...             options=add_argument("--ignore-certificate-errors"); add_argument("--start-maximized"); add_experimental_option("prefs", {"download.default_directory": "${BROWSER_DOWNLOAD_PATH}"})
     Wait Until Location Contains     ${endpoint}    timeout=${timeout}
     Wait Until Element Is Not Visible   css:i.initial-load-spinner  timeout=${timeout}
     Title Should Be    Harvester
@@ -18,12 +18,12 @@ Open Browser To Login Page
 
 Input Login Username
     [Arguments]    ${username}
-    Input Text      css:.labeled-input.edit > input[type='text']
+    Input Text      css:#username
     ...             ${username}
 
 Input Login Password
     [Arguments]    ${password}
-    Input Text      css:.labeled-input.edit > input[type='password']
+    Input Text      css:#password input
     ...             ${password}
 
 Submit Credentials

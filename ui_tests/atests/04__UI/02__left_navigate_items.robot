@@ -18,8 +18,6 @@ Test General Navigation
 Test Advanced Navigation
     [template]      Navigate To Advanced Option ${option} And Screenshot
     Settings
-    Backups
-    Networks
     SSH Keys
     Cloud Config Templates
     Templates
@@ -27,9 +25,7 @@ Test Advanced Navigation
 Test Advanced Settings Navigation
     [template]      Navigate To Edit Advanced Setting ${option} And Screenshot
     ui-index
-    server-url
     ui-source
-    vlan
     upgrade-checker-url
     upgrade-checker-enabled
     LOG-LEVEL

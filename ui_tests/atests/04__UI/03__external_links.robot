@@ -7,7 +7,7 @@ Suite Teardown      Close All Browsers
 
 
 *** Variables ***
-${DOCS_URL}         https://docs.harvesterhci.io/latest/
+${DOCS_URL}         https://docs.harvesterhci.io
 ${FORUMS_URL}       https://forums.rancher.com/c/harvester/
 ${SLACK_URL}        https://slack.rancher.io
 ${FILE_ISSUE_URL}   https://github.com/harvester/harvester/issues/new/choose

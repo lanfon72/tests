@@ -39,7 +39,7 @@ Verify YAML Downloaded From
 Get Node Name From Row
     [arguments]         ${row_id}
     [return]            ${name}
-    ${name} =           Get Text    xpath://main//tr[@data-node-id="${row_id}"]//td[@data-title="Name"]//a
+    ${name} =           Get Text    xpath://main//tr[@data-node-id="${row_id}"]//td[contains(@class, "link-detail")]//a
     Set Test Variable   ${node_name}    ${name}
 
 Check File Is Downloaded And Named

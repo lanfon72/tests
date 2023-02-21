@@ -9,11 +9,11 @@ Links In Dashboard
     [Setup]         Login to Harvester Dashboard
     [Teardown]      Close Browser
     [Template]      Link Box of ${Link_Name} Should Navigate To Page ${Nav_Name}
-    Hosts               Hosts
+    Host                Hosts
     Virtual Machines    Virtual Machines
-    Networks            Networks
+    Network             Networks
     Images              Images
-    Volumes             Volumes
+    Volume              Volumes
 
 
 *** Keywords ***
@@ -32,7 +32,7 @@ Navigate To Page ${Page} And Record URL
 
 Click ${name} Link Box
     Sleep   1s
-    Click Element   xpath://main//div[contains(@class, "has-link")][.//h3[normalize-space(text())="${name}"]]
+    Click Element   xpath://main//div[contains(@class, "has-link")][.//h3[contains(normalize-space(text()), "${name}")]]
     Sleep   0.2s
     Wait Until Element Is Not Visible   css:main div.loading-indicator   ${BROWSER_WAIT_TIMEOUT}
     Sleep   0.3s

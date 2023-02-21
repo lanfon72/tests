@@ -89,7 +89,7 @@ Click Save Button In YAML
     Sleep   2s
 
 Node Name ${name} Should Be Available
-    Element Should Be Visible   xpath://main//td[@data-title="Name"]//a[normalize-space(text())="${name}"]
+    Element Should Be Visible   xpath://main//td[contains(@class, "link-detail")]//a[normalize-space(text())="${name}"]
 
 Field Custom Name In Basic Field Should Be
     [arguments]         ${customized}

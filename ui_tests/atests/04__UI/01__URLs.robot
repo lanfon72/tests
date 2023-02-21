@@ -6,7 +6,7 @@ Suite Teardown      Close All Browsers
 
 *** Variables ***
 ${ORIGIN_URL}           ${{ '${HARVESTER_URL}'.strip('/') }}
-${ENDPOINT_IS_LOGIN}    dashboard/c/local
+${ENDPOINT_IS_LOGIN}    dashboard/harvester/c/local
 ${ENDPOINT_NOT_LOGIN}   dashboard/auth/login
 
 

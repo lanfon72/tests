@@ -9,7 +9,7 @@ Navigate To Advanced Option
     ${_opt} =   Convert To Title Case   ${option}
     Run Keyword If  '${_opt}' == 'Ssh Keys'     ${_opt} = SSH Keys
     Log     input:${option} convert to ${_opt}  INFO
-    Click Element   css:div.nav div.header
+    Click Element   xpath://nav//div[contains(@class, "header")][./h6[text()="Advanced"]]
     Click Element   xpath://a[./span[text()="${_opt}"]]
     Wait Until Element Is Visible   css:main div.outlet   ${timeout}
     Wait Until Element Is Visible   css:main div.outlet header   ${timeout}
