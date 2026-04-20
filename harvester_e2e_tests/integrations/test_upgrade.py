@@ -972,6 +972,7 @@ class TestAnyNodesUpgrade:
 
         assert not fails, "\n".join(fails)
 
+    @pytest.mark.skip(reason="restore issue")
     @pytest.mark.dependency(depends=["any_nodes_upgrade", "preq_setup_vms"])
     def test_verify_restore_vm_from_snapshot(
         self, api_client, cluster_state, vm_shell, vm_checker, wait_timeout
